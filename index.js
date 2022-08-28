@@ -1,9 +1,8 @@
 import express from "express"
 import cors from "cors"
-import animes from "./mocks/animes.js"
 import animesRouter from "./routers/animes.routers.js"
-import CharacterEntity from "./entities/characters.entity.js"
-import AnimeEntity from "./entities/animes.entity.js"
+import connect from 
+'./database/mongoDB/mongo.js'
 
 const port = 3000
 const app = express()
@@ -11,6 +10,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use('/animes', animesRouter)
+connect()
 
 
 app.get('/', function (req, res) {
