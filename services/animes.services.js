@@ -4,31 +4,17 @@ import AnimeEntity from "../entities/animes.entity.js"
 
 function findAllAnimes() {
     console.log('findAllAnimes executado.')
-    if (animes.length == 0) {
-        return ('Não há animes registrados. Vá para http://localhost:3000/create-anime e cadastre um anime agora!')
-    } else {
-        return animes
-    }
+    return animes
 }
 
 function findAnimeById(id) {
     console.log('findAnimesById executado.')
-
     const anime = animes.find((anime) =>anime.id ==id)
-
-    let count = animes.length
-
-    if (anime) { //se o anime com o id escolhido for encontrado
-        return anime
-    } else {
-        return (`Nenhum anime com esse id foi encontrado.\nHá ${count} id's registrados. Verifique a lista e tente novamente com um id existente!`)
-    }
+    return anime
 }
 
 function createAnime(anime) {
     console.log('createAnime executado.')
-
-    console.log(anime)
     const newAnime = new AnimeEntity(anime)
     newAnime.validateAnime()
     //validação de character caso ele exista
@@ -84,14 +70,6 @@ function deleteAnime(id) {
 
     const animeIndex = animes.findIndex((element => element.id == id))
     animes.splice(animeIndex, 1)
-
-    if (animeIndex) {
-        return ('Anime deletado!')
-    }else if (animes.length = true) {
-        return ('Não há nenhum anime registrado na lista para ser deletado!')
-
-    }
-    
 }
 
 export const animesService = {
