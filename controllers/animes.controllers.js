@@ -1,8 +1,9 @@
 import { animesService } from "../services/animes.services.js"
+import { Anime } from "../database/models/animesSchema.js"
 
-function findAllAnimes(req, res) {
+async function findAllAnimes(req, res) {
     try {
-        const allAnimes = animesService.findAllAnimes()
+        const allAnimes = await animesService.findAllAnimes()
         res.status(200).send(allAnimes)
     } catch (err) {
         console.log(err)
@@ -11,11 +12,11 @@ function findAllAnimes(req, res) {
     
 }
 
-function findAnimeById(req, res) {
+async function findAnimeById(req, res) {
     const id = +req.params.id
-    const selectedAnime = animesService.findAnimeById(id)
+    const selectedAnime = await animesService.findAnimeById(id)
 
-    let count = animes.length
+    let count = Anime.length
 
     if (selectedAnime) {
         res.status(200).send(selectedAnime)
@@ -24,10 +25,10 @@ function findAnimeById(req, res) {
     }
 }
 
-function createAnime(req, res) {
+async function createAnime(req, res) {
     try {
         const anime = req.body
-        const createeAnime = animesService.createAnime(anime)
+        const createeAnime = await animesService.createAnime(anime)
         res.status(200).send(createeAnime)
     } catch (err) {
         console.log(err)
@@ -35,10 +36,10 @@ function createAnime(req, res) {
     }
 }
 
-function updateAnime(req, res) {
+async function updateAnime(req, res) {
     try {
         const anime = req.body
-        const updatedAnime = animesService.updateAnime(anime)
+        const updatedAnime = await animesService.updateAnime(anime)
         res.status(200).send(updatedAnime)
     } catch (err) {
         console.log(err)
@@ -46,10 +47,10 @@ function updateAnime(req, res) {
     }
 }
 
-function deleteAnime(req, res) {
+async function deleteAnime(req, res) {
     try {
         const id = req.params.id
-        const deletedAnime = animesService.deleteAnime(id)
+        const deletedAnime = await animesService.deleteAnime(id)
         res.send(deletedAnime)
     } catch (err) {
         let count = animes.length
