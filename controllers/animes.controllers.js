@@ -31,7 +31,7 @@ function createAnime(req, res) {
         res.status(200).send(createeAnime)
     } catch (err) {
         console.log(err)
-        res.status(400).send(err)
+        res.status(400).send({message: err.message})
     }
 }
 
@@ -42,7 +42,7 @@ function updateAnime(req, res) {
         res.status(200).send(updatedAnime)
     } catch (err) {
         console.log(err)
-        res.status(400).send(err)
+        res.status(400).send({message: err.message})
     }
 }
 

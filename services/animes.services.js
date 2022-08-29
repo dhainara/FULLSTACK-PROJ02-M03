@@ -2,18 +2,18 @@ import animes from "../mocks/animes.js"
 import CharacterEntity from "../entities/characters.entity.js"
 import AnimeEntity from "../entities/animes.entity.js"
 
-function findAllAnimes() {
+async function findAllAnimes() {
     console.log('findAllAnimes executado.')
-    return animes
+    return await Anime.find()
 }
 
-function findAnimeById(id) {
+async function findAnimeById(id) {
     console.log('findAnimesById executado.')
-    const anime = animes.find((anime) =>anime.id ==id)
+    const anime = await animes.findOne((anime) => anime.id ==id)
     return anime
 }
 
-function createAnime(anime) {
+async function createAnime(anime) {
     console.log('createAnime executado.')
     const newAnime = new AnimeEntity(anime)
     newAnime.validateAnime()
