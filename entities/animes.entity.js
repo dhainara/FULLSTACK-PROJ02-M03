@@ -38,6 +38,7 @@ class AnimeEntity {
     getAnime() {
         return {
             id: this.id,
+            title: this.title,
             protagonist: this.protagonist,
             genre: this.genre,
             seasons: this.seasons,
