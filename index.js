@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 const express = require("express")
 const cors = require("cors")
 const router = require("./src/routers/animes.routers.js")
@@ -9,7 +7,7 @@ const swaggerDoc = require("./src/docs/swagger.json")
 const swaggerAutogen = require('./swagger_output.json')
 
 
-const port = 3000??process.env.PORT
+const port = 3000 ?? process.env.PORT
 const app = express()
 
 app.use(cors())
