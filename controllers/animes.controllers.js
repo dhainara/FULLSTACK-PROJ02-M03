@@ -13,15 +13,13 @@ async function findAllAnimes(req, res) {
 }
 
 async function findAnimeById(req, res) {
-    const id = +req.params.id
-    const selectedAnime = await animesService.findAnimeById(id)
-
-    let count = Anime.length
-
-    if (selectedAnime) {
+    try {
+        const id = req.params.id
+        const selectedAnime = await animesService.findAnimeById(id)
         res.status(200).send(selectedAnime)
-    } else {
-        res.status(400).send({message: `Nenhum anime com esse id foi encontrado.\nHá ${count} id's registrados. Verifique a lista e tente novamente com um id existente!`})
+    } catch (err) {
+        res.status(400).send({message: err.message})
+
     }
 }
 
@@ -29,7 +27,7 @@ async function createAnime(req, res) {
     try {
         const anime = req.body
         const createeAnime = await animesService.createAnime(anime)
-        res.status(200).send({massage: "Personagem criado com sucesso: ", createeAnime})
+        res.status(200).send({message: "Personagem criado com sucesso: ", createeAnime})
     } catch (err) {
         console.log(err)
         res.status(400).send({message: err.message})
