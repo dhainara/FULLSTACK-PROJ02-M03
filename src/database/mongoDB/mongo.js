@@ -1,7 +1,8 @@
 if (process.env.NODE_ENV !== "production") {
-    const { connect } = require('mongoose')
     require('dotenv').config()
 }
+    const { connect } = require('mongoose')
+
 function mongoConnect() {
     connect(process.env.MONGO_URL || "mongodb://admin@localhost:27020/").then(() => {
         console.log("MongoDB conectado!")
