@@ -6,7 +6,7 @@ const animes = [
         genre: "Filme",
         seasons:"",
         year: "2011",
-        characters: [
+        characters: [       
             {
                 id: "1",
                 name: "Gin",

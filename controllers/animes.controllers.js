@@ -29,7 +29,7 @@ async function createAnime(req, res) {
     try {
         const anime = req.body
         const createeAnime = await animesService.createAnime(anime)
-        res.status(200).send(createeAnime)
+        res.status(200).send({massage: "Personagem criado com sucesso: ", createeAnime})
     } catch (err) {
         console.log(err)
         res.status(400).send({message: err.message})
@@ -51,9 +51,9 @@ async function deleteAnime(req, res) {
     try {
         const id = req.params.id
         const deletedAnime = await animesService.deleteAnime(id)
-        res.send(deletedAnime)
+        res.send({mesagge: "Anime deletado com sucesso!"})
     } catch (err) {
-        let count = animes.length
+        let count = Anime.length
         console.log(err)
         res.status(400).send({message: `Nenhum anime com esse id foi encontrado.\nHá ${count} id's registrados. Verifique a lista e tente novamente com um id existente!`})
     }
