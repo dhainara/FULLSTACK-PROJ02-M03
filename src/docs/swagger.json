@@ -16,7 +16,7 @@
     }
   ],
   "paths": {
-    "/": {
+    "/all-animes": {
       "get": {
         "summary": "This endpoint return all animes in database",
         "tags": ["Animes"],
@@ -37,7 +37,7 @@
         }
       }
     },
-    "/{id}": {
+    "/animesById/{id}": {
       "get": {
         "summary": "This endpoint return a unique anime finded by id",
         "tags": ["Animes"],
@@ -69,7 +69,7 @@
         }
       }
     },
-    "/create": {
+    "/create-anime": {
       "post": {
         "summary": "This endpoint the anime has been created",
         "tags": ["Animes"],
@@ -84,15 +84,13 @@
                   "value": {
                     "title": "Bleach",
                     "protagonist": "Ichigo",
-                    "gender": "Shounem",
+                    "genre": "Shounem",
+                    "seasons": "2",
                     "year": 2006,
                     "characters": [
                       {
                         "name": "Urahara",
-                        "lastName": "Kisuke",
-                        "skill": "Bankai",
-                        "age": "501",
-                        "gender": "male"
+                        "age": "501"
                       }
                     ]
                   }
@@ -119,7 +117,7 @@
         }
       }
     },
-    "/update": {
+    "/update-anime/{id}": {
       "put": {
         "summary": "This endpoint return the anime updated",
         "tags": ["Animes"],
@@ -135,20 +133,19 @@
                     "id": "29060c40-1cf1-11ed-861d-0242ac120002",
                     "title": "Bleach",
                     "protagonist": "Ichigo",
-                    "gender": "Shounem",
+                    "genre": "Shounem",
+                    "seasons": "2",
                     "year": 2006,
                     "characters": [
                       {
                         "name": "Urahara",
-                        "lastName": "Kisuke",
-                        "skill": "Bankai",
-                        "age": "501",
-                        "gender": "male"
+                        "age": "501"
                       }
                     ]
                   }
                 }
               },
+              "parameters": [],
               "responses": {
                 "400": {
                   "description": "Bad request"
@@ -211,7 +208,8 @@
           "id": { "type": "string" },
           "title": { "type": "string" },
           "protagonist": { "type": "string" },
-          "gender": { "type": "string" },
+          "genre": { "type": "string" },
+          "seasons": {"type": "string"},
           "year": { "type": "number" },
           "characters": {
             "type": "array",

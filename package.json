@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-    "scripts": {
+  "scripts": {
     "start": "node index",
-    "dev": "nodemon index"
+    "dev": "nodemon ./src/index.js",
+    "doc": "node ./src/docs/autodoc.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +18,8 @@
     "validator": "^13.7.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "dotenv": "^16.0.1",
+    "nodemon": "^2.0.19",
+    "swagger-autogen": "^2.21.5"
   }
 }

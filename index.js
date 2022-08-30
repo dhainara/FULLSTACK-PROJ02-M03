@@ -1,11 +1,15 @@
+require('dotenv').config()
+
 const express = require("express")
 const cors = require("cors")
+const router = require("./src/routers/animes.routers.js")
+const {mongoConnect} = require('./src/database/mongoDB/mongo.js')
 const swaggerUi = require("swagger-ui-express")
-const swaggerDoc = require("./docs/swagger.json")
-const router = require("./routers/animes.routers.js")
-const {mongoConnect} = require('./database/mongoDB/mongo.js')
+const swaggerDoc = require("./src/docs/swagger.json")
+const swaggerAutogen = require('./swagger_output.json')
 
-const port = 3000
+
+const port = 3000??process.env.PORT
 const app = express()
 
 app.use(cors())
@@ -19,26 +23,6 @@ mongoConnect()
 
 app.get('/', function (req, res) {
     res.send('Bem vindo a API de Animes!\n \nAqui você poderá ver todos os seus animes de uma só vez, ver um anime especifico existente na lista, excluir um anime, modificar um de seus dados, adicionar e/ou excluir um anime.')
-})
-
-app.get('/testes', function (req, res) {
-    //dando os valores para o character
-    const anime = new AnimeEntity({
-        id: 5,
-        title: "Back",
-        protagonist: "this.protagonist",
-        genre: "this.genre",
-        seasons: "0",
-        year: "2000",
-        characters: {}
-    })
-    
-    //validando
-    anime.validate()
-
-    //getCharacter está retornando o os dados
-
-    res.send(anime.getAnime())
 })
 
 app.listen(port, () => {
