@@ -55,4 +55,4 @@ const animes = [
     },
 ]
 
-export default animes
+module.exports = animes

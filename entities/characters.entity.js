@@ -1,9 +1,9 @@
-import crypto from "crypto" //universal unity user identification
+const crypto = require('node:crypto') //universal unity user identification
 
 class CharacterEntity {
     //dados que serao recfebidos do character
     constructor(character) {
-        this.id = crypto.randomUUID()//caso o personagem nao tenha um id já definido, o crypto irá criar um id random para o character.
+        this.id = character.id ?? crypto.randomUUID()//caso o personagem nao tenha um id já definido, o crypto irá criar um id random para o character.
         this.name = character.name
         this.age = character.age
     }
@@ -30,4 +30,4 @@ class CharacterEntity {
     }
 }
 
-export default CharacterEntity
+module.exports=CharacterEntity

@@ -1,7 +1,7 @@
-import animes from "../mocks/animes.js"
-import { Anime } from "../database/models/animesSchema.js"
-import CharacterEntity from "../entities/characters.entity.js"
-import AnimeEntity from "../entities/animes.entity.js"
+const animes = require('../mocks/animes.js')
+const Anime = require("../database/models/animesSchema.js")
+const CharacterEntity = require("../entities/characters.entity.js")
+const AnimeEntity = require("../entities/animes.entity.js")
 
 
 async function findAllAnimes() {
@@ -78,7 +78,7 @@ async function deleteAnime(id) {
     const anime = await Anime.findOneAndDelete({id:id})
 }
 
-export const animesService = {
+module.exports = {
     findAllAnimes,
     findAnimeById,
     createAnime,

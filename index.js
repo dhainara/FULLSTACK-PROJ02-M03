@@ -1,17 +1,21 @@
-import express from "express"
-import cors from "cors"
-import animesRouter from "./routers/animes.routers.js"
-import connect from 
-'./database/mongoDB/mongo.js'
+const express = require("express")
+const cors = require("cors")
+const swaggerUi = require("swagger-ui-express")
+const swaggerDoc = require("./docs/swagger.json")
+const router = require("./routers/animes.routers.js")
+const {mongoConnect} = require('./database/mongoDB/mongo.js')
 
 const port = 3000
 const app = express()
 
 app.use(cors())
 app.use(express.json())
-app.use('/animes', animesRouter)
-connect()
 
+app.use("/api/docs", swaggerUi.serve)
+app.get("/api/docs", swaggerUi.setup(swaggerDoc))
+app.use('/animes', router)
+
+mongoConnect()
 
 app.get('/', function (req, res) {
     res.send('Bem vindo a API de Animes!\n \nAqui você poderá ver todos os seus animes de uma só vez, ver um anime especifico existente na lista, excluir um anime, modificar um de seus dados, adicionar e/ou excluir um anime.')

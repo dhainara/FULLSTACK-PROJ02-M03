@@ -1,9 +1,8 @@
-import crypto from "crypto" //universal unity user identification
-import animes from "../mocks/animes.js"
+const crypto = require('node:crypto') //universal unity user identification
 class AnimeEntity {
     //dados que serao recebidos do anime
     constructor(anime) {
-        this.id = anime.id ||crypto.randomUUID(), //caso o anime nao tenha um id já definido, o crypto irá criar um id random para o character.
+        this.id = anime.id ?? crypto.randomUUID(), //caso o anime nao tenha um id já definido, o crypto irá criar um id random para o character.
         this.title = anime.title,
         this.protagonist = anime.protagonist
         this.genre = anime.genre,
@@ -48,4 +47,4 @@ class AnimeEntity {
     }
 }
 
-export default AnimeEntity
+module.exports = AnimeEntity

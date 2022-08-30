@@ -1,5 +1,5 @@
-import { animesService } from "../services/animes.services.js"
-import { Anime } from "../database/models/animesSchema.js"
+const animesService = require("../services/animes.services.js")
+const {Anime} = require("../database/models/animesSchema.js")
 
 async function findAllAnimes(req, res) {
     try {
@@ -57,7 +57,7 @@ async function deleteAnime(req, res) {
     }
 }
 
-export const animesController = {findAllAnimes,
+module.exports = {findAllAnimes,
     findAnimeById,
     createAnime,
     updateAnime,

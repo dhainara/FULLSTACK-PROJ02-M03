@@ -1,15 +1,12 @@
-import mongoose from "mongoose"
-import pkg from "mongoose"
+const { Schema, model } = require('mongoose')
 
-const { Schema, model } = pkg
-
-export const charactersSchema = new Schema({
+const charactersSchema = new Schema({
     id: { type: String, required: true },
     name: { type: String, required: true },
     age: {type: Number, required: true}
 })
 
-export const animesSchema = new Schema({
+const animesSchema = new Schema({
     id: { type: String, required: true },
     title: {type: String, required:true},
     protagonist: {type: String, required:true},
@@ -20,4 +17,6 @@ export const animesSchema = new Schema({
     createdAt: {type: Date, default: Date.now()}
 })
 
-export const Anime = mongoose.model("Anime", animesSchema)
+const Anime = model("Anime", animesSchema)
+
+module.exports = Anime

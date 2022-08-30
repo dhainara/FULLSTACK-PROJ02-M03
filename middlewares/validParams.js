@@ -1,6 +1,6 @@
-import validator from "validator"
+const validator = require('validator')
 
-export const validParams = (req, res, next) => {
+const validParams = (req, res, next) => {
     const idParam = req.params.id
 
     const validId = validator.isUUID(idParam)
@@ -10,3 +10,5 @@ export const validParams = (req, res, next) => {
         next()
     }
 }
+
+module.exports = validParams
