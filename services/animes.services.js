@@ -1,6 +1,8 @@
 import animes from "../mocks/animes.js"
+import { Anime } from "../database/models/animesSchema.js"
 import CharacterEntity from "../entities/characters.entity.js"
 import AnimeEntity from "../entities/animes.entity.js"
+
 
 async function findAllAnimes() {
     console.log('findAllAnimes executado.')
@@ -9,7 +11,7 @@ async function findAllAnimes() {
 
 async function findAnimeById(id) {
     console.log('findAnimesById executado.')
-    const anime = await animes.findOne((anime) => anime.id ==id)
+    const anime = await Anime.findOne({id:id})
     return anime
 }
 
@@ -29,21 +31,26 @@ async function createAnime(anime) {
 
     const createdAnime = {
         ...newAnime.getAnime(),
-        charecters: newCharacters,
+        characters: newCharacters,
     }
 
-    animes.push(createdAnime)
+    const animeCreatedpush = await Anime.create(createdAnime)
 
-    return createdAnime
+    return animeCreatedpush
 }
 
-function updateAnime(anime) {
+async function updateAnime(anime) {
     console.log('updateAnime executado.')
 
     const updateAnime = new AnimeEntity(anime)
     updateAnime.validateAnime()
 
+    if (!anime.characters) {
+        res.send({message:"Personagens precisam ser informados."})
+    }
+
     const updatedCharacters = []
+
     anime.characters.map((character) => {
         const updatedCharacter = new CharacterEntity(character)
         updatedCharacter.validateCharacter()
@@ -55,21 +62,20 @@ function updateAnime(anime) {
         characters: updatedCharacters
     }
 
-    animes.map((eachAnime, index) => {
-        if (eachAnime.id === updateAnime.id) {
-            animes.splice(index, 1, updateAnime)//irá remover o objeto index daarray anime, e recolor os dados do updated anime
-        }
-    })
+    const animeUpdatedInDatabase = await Anime.findOneAndUpdate(
+        { id: anime.id },
+        updatedAnime,
+        { new: true }
+    )
 
-    return updatedAnime
+    return animeUpdatedInDatabase
 
 }
 
-function deleteAnime(id) {
+async function deleteAnime(id) {
     console.log('deleteAnime executado.')
 
-    const animeIndex = animes.findIndex((element => element.id == id))
-    animes.splice(animeIndex, 1)
+    const anime = await Anime.findOneAndDelete({id:id})
 }
 
 export const animesService = {
